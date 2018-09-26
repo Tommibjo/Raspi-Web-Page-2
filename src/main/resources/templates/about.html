@@ -9,7 +9,7 @@ and open the template in the editor.
         <title>About me and this site</title>
     </head>
     <body>
-        <div id="links"> <a th:href="@{/}">Home</a> <a th:href="@{/about}">About</a> <a th:href="@{/cvdb}">Files</a></div>
+           <div id="links"> <a th:href="@{/}">Home</a> <a th:href="@{/about}">About</a> <a th:href="@{/cvdb}">Files</a> <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></div>
         <h1>This is me</h1>
     </body>
 </html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Juurivuohi works</title>
+    </head>
+    <body>
+        <div id="links"> <a th:href="@{/}">Home</a> <a th:href="@{/about}">About</a> <a th:href="@{/cvdb}">Files</a> </div>
+        <h1>Project curriculum vitae</h1>
+        <sec:authorize access="isAuthenticated()">
+            <a th:href="@{/logout}">Logout</a>
+        </sec:authorize>
+    </body>
+</html>

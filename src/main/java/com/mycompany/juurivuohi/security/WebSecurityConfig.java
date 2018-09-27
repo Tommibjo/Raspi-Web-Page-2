@@ -7,6 +7,7 @@ package com.mycompany.juurivuohi.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -21,17 +22,28 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
  */
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
-    
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests().antMatchers("/","/about").permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll().and().logout().permitAll();
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/cvdb").authenticated()
+                .antMatchers("/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/comment").permitAll()
+                .antMatchers(HttpMethod.GET, "/comment").permitAll()
+                .and()
+                .formLogin().loginPage("/login").permitAll()
+                .and()
+                .logout().permitAll()
+                .and()
+                .httpBasic();
     }
-    
+
     /* in-memory user is here for testing purposes */
     @Bean
     @Override
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         UserDetails user = User.withDefaultPasswordEncoder().username("Testi").password("Testi").roles("USER").build();
         return new InMemoryUserDetailsManager(user);
     }

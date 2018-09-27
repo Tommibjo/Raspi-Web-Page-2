@@ -9,7 +9,11 @@ and open the template in the editor.
         <title>About me and this site</title>
     </head>
     <body>
-           <div id="links"> <a th:href="@{/}">Home</a> <a th:href="@{/about}">About</a> <a th:href="@{/cvdb}">Files</a> <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></div>
+        <div id="links"> <a th:href="@{/}">Home</a> <a th:href="@{/about}">About</a> <a th:href="@{/cvdb}">Files</a> <a sec:authorize="isAuthenticated()" href="javascript: document.logoutForm.submit()" role="menuitem">Logout</a>
+            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                <input hidden type="submit" value="Sign Out" />
+            </form>
+        </div>
         <h1>This is me</h1>
     </body>
 </html>

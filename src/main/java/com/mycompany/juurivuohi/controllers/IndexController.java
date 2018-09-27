@@ -34,5 +34,4 @@ public class IndexController {
     public String showLogin(){
         return "login";
     }
-    
 }

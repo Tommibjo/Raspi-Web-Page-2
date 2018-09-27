@@ -7,9 +7,25 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Juurivuohi works</title>
+        <script type="text/javascript" th:src="@{/index.js}"></script>
     </head>
     <body>
-        <div id="links"> <a th:href="@{/}">Home</a> <a th:href="@{/about}">About</a> <a th:href="@{/cvdb}">Files</a> <a sec:authorize="isAuthenticated()" th:href="@{/logout}" method="post">Logout</a></div>
+        <div id="links"> <a th:href="@{/}">Home</a> <a th:href="@{/about}">About</a> <a th:href="@{/cvdb}">Files</a> <a sec:authorize="isAuthenticated()" href="javascript: document.logoutForm.submit()" role="menuitem">Logout</a>
+            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                <input hidden type="submit" value="Sign Out" />
+            </form>
+        </div>
+
         <h1>Project curriculum vitae</h1>
+
+
+        <h2>Drop a comment!</h2>
+
+        <form onsubmit="return false">
+            Username <input type="text" name="username" id="usernameInput"/>
+            Comment <input type="text" name="comment" id="commentInput"/>
+            <input type="submit" onclick="onClick()"/>
+        </form>
+        <span id="Messages"></span>
     </body>
 </html>

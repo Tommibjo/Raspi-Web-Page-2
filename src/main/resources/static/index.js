@@ -69,14 +69,7 @@ function uploadComment(Object) {
     request.send(jsonData);
 }
 
-/*
- * Function description:
- * Activates on <form> submit button
- * Fetches username & comment from HTML, turns the data to JS-object and distributes the object to further processing
- */
-function onClick() {
-    var username = document.getElementById("usernameInput").value; // sun pitää lisätä tälle muuttujalle viimeisimmän olion "username"
-    var comment = document.getElementById("commentInput").value;
+function createObject(username, comment) {
     var currentdate = new Date();
     var timeStamp = currentdate.getHours() + ":"
             + currentdate.getMinutes() + ":" + currentdate.getSeconds();
@@ -89,9 +82,28 @@ function onClick() {
     uploadComment(data);
     messages.push(data);
     updateJsonDiv();
+}
 
-    document.getElementById("usernameInput").value = ""; // empties the <input type="text" name="username" id="usernameInput"/>
-    document.getElementById("commentInput").value = ""; // empties the <input type="text" name="comment" id="commentInput"/>
+
+/*
+ * Function description:
+ * Activates on <form> submit button
+ * Fetches username & comment from HTML, turns the data to JS-object and distributes the object to further processing
+ */
+function onClick() {
+    var username = document.getElementById("usernameInput").value; // sun pitää lisätä tälle muuttujalle viimeisimmän olion "username"
+    var comment = document.getElementById("commentInput").value;
+    if (!username.match(/^(?=.{3,20}$)[a-zA-Z0-9]+$/)) {
+        alert("Username must be between 3-20 characters");
+        return false;
+    } else if (comment === "") {
+        alert("Comment field can not be empty");
+        return false;
+    } else {
+        createObject(username, comment);
+        document.getElementById("usernameInput").value = ""; // empties the <input type="text" name="username" id="usernameInput"/>
+        document.getElementById("commentInput").value = ""; // empties the <input type="text" name="comment" id="commentInput"/>
+    }
 }
 
 /*

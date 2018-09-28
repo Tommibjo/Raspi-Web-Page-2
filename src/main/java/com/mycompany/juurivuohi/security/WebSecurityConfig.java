@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().permitAll()
                 .and()
-                .httpBasic();
+                .httpBasic().and().csrf().disable();
     }
 
     /* in-memory user is here for testing purposes */

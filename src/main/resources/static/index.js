@@ -93,14 +93,15 @@ function createObject(username, comment) {
 function onClick() {
     var username = document.getElementById("usernameInput").value; // sun pitää lisätä tälle muuttujalle viimeisimmän olion "username"
     var comment = document.getElementById("commentInput").value;
-    if (!username.match(/^(?=.{3,20}$)[a-zA-Z0-9]+$/)) {
-        alert("Username must be between 3-20 characters");
-        return false;
-    } else if (comment === "") {
-        alert("Comment field can not be empty");
+    if (comment === "") {
+        alert("Can't leave empty comment!");
         return false;
     } else {
-        createObject(username, comment);
+        if (username === "") {
+            createObject("Anonymous internet user", comment);
+        } else {
+            createObject(username, comment);
+        }
         document.getElementById("usernameInput").value = ""; // empties the <input type="text" name="username" id="usernameInput"/>
         document.getElementById("commentInput").value = ""; // empties the <input type="text" name="comment" id="commentInput"/>
     }

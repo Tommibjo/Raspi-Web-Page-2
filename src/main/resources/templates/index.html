@@ -19,11 +19,13 @@ and open the template in the editor.
         <h1>Project curriculum vitae</h1>
         <h2>Drop a comment!</h2>
 
-        <form onsubmit="return false">
-            Username <input type="text" name="username" id="usernameInput"/>
-            Comment <input type="text" name="comment" id="commentInput"/>
-            <input type="submit" onclick="onClick()"/>
+        <form onsubmit="return false" id="comments">
+            <b>Comment</b><br><textarea rows="4" cols="50" id="commentInput" form="comments"></textarea><br>
+            <b>Name</b> (Not required) <br><input type="text" id="usernameInput"/><br><br>
+            <input type="submit" onclick="onClick()" value="Submit">
         </form>
+        <br>
+        <br>
         <span id="Messages"></span>
     </body>
 </html>

@@ -15,16 +15,15 @@ function updateJsonDiv() {
     for (var i = 0, len = messages.length; i < len; i++) { // Loopataan messages array läpi
         var newSpan = document.createElement("span"); // Luodaan uusi span kommenteille.
         var newStyle = document.createElement('style');
-        newStyle.innerHTML = "span {border: 1px solid #dedede;background-color: #f1f1f1;border-radius: 15px; padding-top: 5px;padding-bottom:5px;padding-right:7px;padding-left:7px;margin: 2px; height: auto; width: auto; display: table;}";
+        newStyle.innerHTML = "span {border: 1px solid #dedede;background-color: #f1f1f1; padding-top: 5px;padding-bottom:5px;padding-right:7px;padding-left:7px; display: table; width: 405px;}";
         newSpan.appendChild(document.createTextNode(messages[i].username));
-        newSpan.appendChild(document.createTextNode('\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'));
-        newSpan.appendChild(document.createTextNode(messages[i].postTime));
         newSpan.appendChild(document.createElement("br"));
         newSpan.appendChild(document.createElement("br"));
         newSpan.appendChild(document.createTextNode(messages[i].comment)); // Lisätään jokaisen taulukosta löytyvät nimet, sekä kommentit tekstiksi;
-        newSpan.appendChild(document.createElement("br")); // Lisätään <Span:iin> vielä rivinvaihto 
+        newSpan.appendChild(document.createElement("br"));
+        newSpan.appendChild(document.createElement("br"));
+        newSpan.appendChild(document.createTextNode(messages[i].postTime));
         newSpan.appendChild(newStyle);
-
         document.body.insertBefore(newSpan, document.getElementById("Messages")); // korvataan Messages -> var newSpan:illa
     }
     messages = [];

@@ -13,18 +13,39 @@ var messages = new Array();
 function updateJsonDiv() {
 
     for (var i = 0, len = messages.length; i < len; i++) { // Loopataan messages array läpi
-        var newSpan = document.createElement("span"); // Luodaan uusi span kommenteille.
-        var newStyle = document.createElement('style');
-        newStyle.innerHTML = "span {border: 1px solid #dedede;background-color: #f1f1f1; padding-top: 5px;padding-bottom:5px;padding-right:7px;padding-left:7px; display: table; width: 405px;}";
-        newSpan.appendChild(document.createTextNode(messages[i].username));
-        newSpan.appendChild(document.createElement("br"));
-        newSpan.appendChild(document.createElement("br"));
-        newSpan.appendChild(document.createTextNode(messages[i].comment)); // Lisätään jokaisen taulukosta löytyvät nimet, sekä kommentit tekstiksi;
-        newSpan.appendChild(document.createElement("br"));
-        newSpan.appendChild(document.createElement("br"));
-        newSpan.appendChild(document.createTextNode(messages[i].postTime));
-        newSpan.appendChild(newStyle);
-        document.body.insertBefore(newSpan, document.getElementById("Messages")); // korvataan Messages -> var newSpan:illa
+
+        var containerSpan = document.createElement("span"); // Luodaan uusi span kommenteille.
+        containerSpan.setAttribute("id", "mainSpan");
+
+        var timeSpan = document.createElement("span"); // Luodaan uusi span aikaleimalle
+        timeSpan.setAttribute("id", "timeSpan");
+
+        var usernameSpan = document.createElement("span");
+        usernameSpan.setAttribute("id", "usernameSpan");
+
+        usernameSpan.appendChild(document.createTextNode(messages[i].username));
+        containerSpan.appendChild(usernameSpan);
+        containerSpan.appendChild(document.createElement("br"));
+        containerSpan.appendChild(document.createElement("br"));
+        containerSpan.appendChild(document.createTextNode(messages[i].comment));
+        containerSpan.appendChild(document.createElement("br"));
+        containerSpan.appendChild(document.createElement("br"));
+        timeSpan.appendChild(document.createTextNode(messages[i].postTime));
+        containerSpan.appendChild(timeSpan);
+
+        document.body.insertBefore(containerSpan, document.getElementById("Messages")); // korvataan Messages -> var newSpan:illa
+
+        var usernameStyle = document.createElement("style");
+        usernameStyle.innerHTML = "#usernameSpan {font-weight: bold;}";
+        document.getElementById("usernameSpan").appendChild(usernameStyle);
+
+        var timeStyle = document.createElement("style"); // Luodaan uusi tyyli div osiolle
+        timeStyle.innerHTML = "#timeSpan {color: #999;}";
+        document.getElementById("timeSpan").appendChild(timeStyle);
+
+        var containerStyle = document.createElement("style"); // Luodaan uusi tyyli span osiolle
+        containerStyle.innerHTML = "#mainSpan {border: 1px solid #dedede;background-color: #f1f1f1; padding-top: 5px;padding-bottom:5px;padding-right:7px;padding-left:7px; display: table; width: 405px;margin: 10px 0;}";
+        document.getElementById("mainSpan").appendChild(containerStyle);
     }
     messages = [];
     console.log("{Comments updated on front}");
@@ -76,8 +97,14 @@ function uploadComment(Object) {
 
 function createObject(username, comment) {
     var currentdate = new Date();
-    var timeStamp = currentdate.getHours() + ":"
-            + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+    var hours = '0' + currentdate.getHours().toString();
+    var minutes = '0' + currentdate.getMinutes().toString();
+    var seconds = '0' + currentdate.getSeconds().toString();
+    var day = '0' + currentdate.getDay().toString();
+    var month = '0' + (currentdate.getMonth() + 1).toString();
+    var year = currentdate.getFullYear().toString();
+    var timeStamp = hours.slice(-2) + ":" + minutes.slice(-2) + ":" + seconds.slice(-2) + " " + day.slice(-2) + "/" + month.slice(-2) + "/" + year;
+
     var data = {
         "username": username,
         "comment": comment,
@@ -89,6 +116,23 @@ function createObject(username, comment) {
     updateJsonDiv();
 }
 
+// Linebreaks seem to be automatic 
+/*
+ function modifyLineBreaks(comment) {
+ var modifiedComment = "";
+ if (comment.length > 50) {
+ for (var i = 0; i < comment.length; i++) {
+ if (i > 0 && i % 50 === 0) {
+ modifiedComment += comment.charAt(i);
+ modifiedComment += "\n";
+ } else {
+ modifiedComment += comment.charAt(i);
+ }
+ }
+ }
+ return modifiedComment;
+ }*/
+
 
 /*
  * Function description:
@@ -98,6 +142,7 @@ function createObject(username, comment) {
 function onClick() {
     var username = document.getElementById("usernameInput").value; // sun pitää lisätä tälle muuttujalle viimeisimmän olion "username"
     var comment = document.getElementById("commentInput").value;
+
     if (comment === "") {
         alert("Can't leave empty comment!");
         return false;

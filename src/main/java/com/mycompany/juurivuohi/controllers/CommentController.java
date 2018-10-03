@@ -53,7 +53,7 @@ public class CommentController {
 
     @RequestMapping(method = RequestMethod.POST)
     public Comment postComment(@RequestBody Comment comment) {
-        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
         Date date = new Date();
         comment.setPostTime(dateFormat.format(date));
         if (comment.getUsername().isEmpty() || comment.getUsername().equals("")) {

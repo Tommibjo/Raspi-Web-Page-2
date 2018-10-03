@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <title>Juurivuohi works</title>
         <script th:src="@{/index.js}"></script> 
+        <link th:href="@{/index.css}" rel="stylesheet" ></link>
     </head>
     <body>
         <div id="links"> <a th:href="@{/}">Home</a> <a th:href="@{/about}">About</a> <a th:href="@{/cvdb}">Files</a> <a sec:authorize="isAuthenticated()" href="javascript: document.logoutForm.submit()" role="menuitem">Logout</a>
@@ -26,6 +27,6 @@ and open the template in the editor.
         </form>
         <br>
         <br>
-        <div id="Messages" class="MessageContainer"></div>
+        <div id="Messages"></div>
     </body>
 </html>

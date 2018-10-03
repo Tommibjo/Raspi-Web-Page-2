@@ -116,24 +116,6 @@ function createObject(username, comment) {
     updateJsonDiv();
 }
 
-// Linebreaks seem to be automatic 
-/*
- function modifyLineBreaks(comment) {
- var modifiedComment = "";
- if (comment.length > 50) {
- for (var i = 0; i < comment.length; i++) {
- if (i > 0 && i % 50 === 0) {
- modifiedComment += comment.charAt(i);
- modifiedComment += "\n";
- } else {
- modifiedComment += comment.charAt(i);
- }
- }
- }
- return modifiedComment;
- }*/
-
-
 /*
  * Function description:
  * Activates on <form> submit button

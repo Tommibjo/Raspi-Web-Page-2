@@ -9,8 +9,68 @@ and open the template in the editor.
 */
 
 body{
-    background-image: url('/img/background.jpg');
-    background-size: cover;
+    /* background-image: url('/img/background.jpg'); */
+    color: #fff;
+    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 15s ease infinite;
+    -moz-animation: Gradient 15s ease infinite;
+    animation: Gradient 15s ease infinite;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: Open Sans; 
+}
+@-webkit-keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-moz-keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@keyframes Gradient {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+h1,
+h6 {
+    font-family: 'Open Sans';
+    font-weight: 300;
+}
+
+b{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: Open Sans; 
 }
 
 #Main {
@@ -19,9 +79,10 @@ body{
     margin-right: auto;
     margin-left: auto;
     border-style: solid;
-    border-width: 1px;
+    border-width: 2px;
+    border-color: rgba(255 ,255 ,255 , 0.2);
     padding: 25px;
-    background-color:rgba(232, 235, 240, 0.5);
+    background-color: rgba(88 ,139 ,174 , 0.5);
 }
 
 #Login{ 

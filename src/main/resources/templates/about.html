@@ -7,13 +7,16 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>About me and this site</title>
+        <link th:href="@{/index.css}" rel="stylesheet" ></link>
     </head>
     <body>
-        <div id="links"> <a th:href="@{/}">Home</a> <a th:href="@{/about}">About</a> <a th:href="@{/cvdb}">Files</a> <a sec:authorize="isAuthenticated()" href="javascript: document.logoutForm.submit()" role="menuitem">Logout</a>
-            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-                <input hidden type="submit" value="Sign Out" />
-            </form>
+        <div id="Main">
+            <div id="links"> <a th:href="@{/}">Home</a> <a th:href="@{/about}">About</a> <a th:href="@{/cvdb}">Files</a> <a sec:authorize="isAuthenticated()" href="javascript: document.logoutForm.submit()" role="menuitem">Logout</a>
+                <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                    <input hidden type="submit" value="Sign Out" />
+                </form>
+            </div>
+            <h1>This is me</h1>
         </div>
-        <h1>This is me</h1>
     </body>
 </html>

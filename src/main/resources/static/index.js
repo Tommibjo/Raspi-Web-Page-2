@@ -44,7 +44,7 @@ function updateJsonDiv() {
         document.getElementById("timeSpan").appendChild(timeStyle);
 
         var containerStyle = document.createElement("style"); // Luodaan uusi tyyli span osiolle
-        containerStyle.innerHTML = "#mainSpan {border: 1px solid #dedede;background-color: #f1f1f1; padding-top: 5px;padding-bottom:5px;padding-right:7px;padding-left:7px; display: table; width: 405px;margin: 10px 0;margin-right: auto; margin-left: auto;}";
+        containerStyle.innerHTML = "#mainSpan {border: 1px solid;background-color:rgba(232, 235, 240, 0.8); border-color: black;padding-top: 5px;padding-bottom:5px;padding-right:7px;padding-left:7px; display: table; width: 405px;margin: 10px 0;margin-right: auto; margin-left: auto;}";
         document.getElementById("mainSpan").appendChild(containerStyle);
     }
     messages = [];

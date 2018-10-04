@@ -7,20 +7,23 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Please login first</title>
+        <link th:href="@{/index.css}" rel="stylesheet" ></link>
     </head>
     <body>
-        <div id="links"> <a th:href="@{/}">Home</a> <a th:href="@{/about}">About</a> <a th:href="@{/cvdb}">Files</a> <a sec:authorize="isAuthenticated()" href="javascript: document.logoutForm.submit()" role="menuitem">Logout</a>
-            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-                <input hidden type="submit" value="Sign Out" />
-            </form>
-        </div>
-        <h1>Sign in with the credentials provided</h1>
+        <div id="Main">
+            <div id="links"> <a th:href="@{/}">Home</a> <a th:href="@{/about}">About</a> <a th:href="@{/cvdb}">Files</a> <a sec:authorize="isAuthenticated()" href="javascript: document.logoutForm.submit()" role="menuitem">Logout</a>
+                <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                    <input hidden type="submit" value="Sign Out" />
+                </form>
+            </div>
+            <h1>Sign in</h1>
 
-        <form th:action="@{/login}" method="post">
-            username <input type="text" name="username"/>
-            password <input type="password" name="password"/>
-            <input type="submit" value="Sign in"/>
-        </form>
-        <div th:if="${param.error}">Invalid username and/or password</div>
+            <form th:action="@{/login}" method="post">
+                username <br/><input type="text" name="username"/><br/>
+                    password <br/> <input type="password" name="password"/><br/><br/>
+                <input type="submit" value="Sign in"/>
+            </form>
+            <div th:if="${param.error}">Invalid username and/or password</div>
+        </div>
     </body>
 </html>

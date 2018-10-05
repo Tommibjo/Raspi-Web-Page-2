@@ -40,7 +40,7 @@ function updateJsonDiv() {
         document.getElementById("usernameSpan").appendChild(usernameStyle);
 
         var timeStyle = document.createElement("style"); // Luodaan uusi tyyli div osiolle
-        timeStyle.innerHTML = "#timeSpan {color: #999;}";
+        timeStyle.innerHTML = "#timeSpan {color: #ddd;}";
         document.getElementById("timeSpan").appendChild(timeStyle);
 
         var containerStyle = document.createElement("style"); // Luodaan uusi tyyli span osiolle
